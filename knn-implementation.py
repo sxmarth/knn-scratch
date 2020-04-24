@@ -1,11 +1,8 @@
 import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib import style
+import warnings
 from collections import Counter
-style.use('fivethirtyeight')
-
-dataset = {'k': [[1,2], [2,3], [3,1]], 'r': [[6,5],[7,7],[8,6]]}
-new_features = [5,7]
+import pandas as pd
+import random
 
 def k_nearest_neighbours(data, predict, k=3):
     if len(data) >= k:
@@ -13,6 +10,16 @@ def k_nearest_neighbours(data, predict, k=3):
     distances = []
     for group in data:
         for features in data[group]:
+            euclidian_distance = np.linalg.norm(np.array(features)-np.array(predict))
+            distances.append([euclidian_distance, group])
+
+    votes = [i[1] for i in sorted(distances) [:k]]
+    print(Counter(votes) .most_common(1))
+    vote_result = Counter(votes).most_common(1)[0][0]
+
+    for [i in sorted(distances) [:k]]
 
 
     return vote_result
+
+df = pd.read_csv("")
